@@ -126,13 +126,16 @@ class User {
   }
   favoriteBandMatches(bands){
     bands.filter(function(band){
-      return band == this.band
+      if(band === this.favoriteBand){
+        console.log(`Band match for ${this.name}: ${this.favoriteBand}`)
     })
   }
 }
 
-let billy = new Person('billy', 'paul simon')
-billy.favoriteBandListed(['paul simon', 'the kooks'])
+let billy = new User('billy', 'paul simon')
+let jane = new User('jane', 'deli creeps')
+billy.favoriteBandMatches(['paul simon', 'the kooks', 'pat sayjack', 'deli creeps'])
+jane.favoriteBandMatches(['paul simon', 'the kooks', 'pat sayjack', 'deli creeps'])
 // Uncaught TypeError: Cannot read property 'band' of undefined
 ```
 
@@ -148,14 +151,19 @@ class User {
     // here this is the User instance
     bands.filter(function(band){
       // here, this is global
-      return band == this.band
+      if(band === this.favoriteBand){
+        console.log(`Band match for ${this.name}: ${this.favoriteBand}`)
     }.bind(this))
   }
 }
 
-let billy = new Person('billy', 'paul simon')
-billy.favoriteBandListed(['paul simon', 'the kooks'])
+let billy = new User('billy', 'paul simon')
+let jane = new User('jane', 'deli creeps')
 // 'paul simon'
+// 'deli creeps'
+
+billy.favoriteBandMatches(['paul simon', 'the kooks', 'pat sayjack', 'deli creeps'])
+jane.favoriteBandMatches(['paul simon', 'the kooks', 'pat sayjack', 'deli creeps'])
 ```
 
 Let's see why the above code works.  The callback function is declared when the `favoriteBandMatches` method is invoked.  When the moment the method is invoked, `this` equals the user instance receiving the method call, and we bind the callback function to that user instance.  Then, from inside the `filter` method, the callback function is invoked - the context would be global here, except that the `this` is bound to `User` instance.
