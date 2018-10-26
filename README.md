@@ -4,7 +4,7 @@ In this code along, we will be practicing the use of `bind`, `call` and `apply`.
 
 You can follow along using your browser's JS console, or use `httpserver` to
 serve the provided `index.html`. The HTML file will automatically load
-`index.js` and edits you make there will be shown in your browser.
+`index.js` and edts you make there will be shown in your browser.
 
 ## Objectives
 
