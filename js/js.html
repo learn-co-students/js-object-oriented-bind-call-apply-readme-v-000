@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>BIND CALL APPLY</h2>
+
+<h1 id="demo"></h1>
+
+<script>
+
+    class Event {
+        constructor(title, keywords) {
+            this.title = title;
+            this.keywords = keywords;
+        }
+    }
+    
+    class User {
+        constructor(name, interests) {
+            this.name = name;
+            this.interests = interests;
+        }
+    
+         matchInterests(event) {
+           console.log("'this' is defined: ", this);
+            return event.keywords.some(word => this.interests.includes(word)) + `${this}`;
+        } 
+    }
+
+    let billy = new User('billy', ['music', 'art', 'movies']);
+    let freeMusic = new Event('Free Music Show', ['music', 'free', 'outside']);
+
+
+// matchInterests(event) {
+//        return event.keywords.some(
+//           function(word) {
+//                return this.interests.includes(word);
+//            }.bind(this)
+
+document.getElementById("demo").innerHTML = billy.matchInterests(freeMusic)
+
+
+</script>
+
+</body>
+</html>
