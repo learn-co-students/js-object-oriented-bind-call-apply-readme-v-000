@@ -23,8 +23,11 @@
     
          matchInterests(event) {
            console.log("'this' is defined: ", this);
-            return event.keywords.some(word => this.interests.includes(word)) + `${this}`;
-        } 
+            return event.keywords.some(word => {
+               console.log(this);
+               return this.interests.includes(word);
+           });
+         }
     }
 
     let billy = new User('billy', ['music', 'art', 'movies']);
