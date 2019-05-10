@@ -1,1 +1,2 @@
-// use this to copy code snippets or use your browser's console
+
+// Uncaught TypeError: Cannot read property 'interests' of undefined
